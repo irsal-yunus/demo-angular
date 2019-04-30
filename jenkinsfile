@@ -39,12 +39,12 @@ node {
    // }
 
     stage('Lint') {
-       bat 'ng lint'
+       bat 'npm run ng lint'
     }
 
     stage('Build') {
         milestone()
-       bat 'ng build --prod --aot  --progress=false'
+       bat 'npm run ng build --prod --aot  --progress=false'
       //bat 'ng build --prod --build-optimizer'
     }
 
