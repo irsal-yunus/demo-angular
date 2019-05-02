@@ -60,7 +60,7 @@ node {
 //sh 'ssh 05234@ rm -rf C:\Users\05234\Downloads\nginx-1.16.0\html\dist'
 //sh 'ssh user@server mkdir -p C:\Users\05234\Downloads\nginx-1.16.0\html\'
 bat 'cd dist'
-bat 'echo "$(ls -la dist/)"'
+bat 'ls -la dist/'
 //sh 'scp -r dist/ user@server:/var/www/temp_deploy/dist/'
 //sh ‘ssh user@server “rm -rf /var/www/example.com/dist/ && mv /var/www/temp_deploy/dist/ /var/www/example.com/”’
     }
