@@ -27,11 +27,11 @@ node {
     stage('NPM Install') {
         withEnv(["NPM_CONFIG_LOGLEVEL=warn"]) {
             bat 'npm install'
-  //          bat 'npm install -g tslint '
+  
         }
     }
 
-  //  stage('Test') {
+   //stage('Test') {
      //   withEnv(["CHROME_BIN=/usr/bin/chromium-browser"]) {
       //    bat 'ng test --progress=false --watch false'
     //    }
@@ -45,19 +45,23 @@ node {
     stage('Build') {
         milestone()
        bat 'npm run ng build --prod --aot  --progress=false'
-      //bat 'ng build --prod --build-optimizer'
+      
     }
 
     stage('Archive') {
         bat 'tar  -cvzf dist.tar.gz --strip-components=1 dist'
         archive 'dist.tar.gz'
-        //bat ''' rm -rf node_modules
-        //  oc start-build my-App-JenkinsFile --from-dir=. --follow
-// '''
+
     }
 
     stage('Deploy') {
         milestone()
         echo "Deploying..."
+//sh 'ssh 05234@ rm -rf C:\Users\05234\Downloads\nginx-1.16.0\html\dist'
+//sh 'ssh user@server mkdir -p C:\Users\05234\Downloads\nginx-1.16.0\html\'
+sh 'cd dist'
+sh'echo "$(ls -la dist/)"'
+//sh 'scp -r dist/ user@server:/var/www/temp_deploy/dist/'
+//sh ‘ssh user@server “rm -rf /var/www/example.com/dist/ && mv /var/www/temp_deploy/dist/ /var/www/example.com/”’
     }
 }
