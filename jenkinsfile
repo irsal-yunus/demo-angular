@@ -17,11 +17,6 @@ node {
         //disable to recycle workspace data to save time/bandwidth
         deleteDir()
         checkout scm
-
-        //enable for commit id in build number
-        //env.git_commit_id = sh returnStdout: true, script: 'git rev-parse HEAD'
-        //env.git_commit_id_short = env.git_commit_id.take(7)
-        //currentBuild.displayName = "#${currentBuild.number}-${env.git_commit_id_short}"
     }
 
     stage('NPM Install') {
@@ -30,21 +25,13 @@ node {
   
         }
     }
-
-   //stage('Test') {
-     //   withEnv(["CHROME_BIN=/usr/bin/chromium-browser"]) {
-      //    bat 'ng test --progress=false --watch false'
-    //    }
-       // junit '**/test-results.xml'
-   // }
-
-    stage('Lint') {
+stage('Lint') {
        bat 'npm run ng lint'
     }
 
     stage('Build') {
         milestone()
-       bat 'npm run ng build --prod --aot  --progress=false'
+       bat 'npm run ng build --prod --aot  --progress=false --base-href="/demo"'
       
     }
 
@@ -57,16 +44,11 @@ node {
     stage('Deploy') {
         milestone()
         echo "Deploying..."
-//sh 'ssh 05234@ rm -rf C:\Users\05234\Downloads\nginx-1.16.0\html\dist'
-//sh 'ssh user@server mkdir -p C:\Users\05234\Downloads\nginx-1.16.0\html\'
-bat 'cd dist'
-bat 'ls -la dist/'
 ftpPublisher alwaysPublishFromMaster: true, continueOnError: false, failOnError: false, publishers: [
         [configName: 'FtpServer', transfers: [
             [asciiMode: false, cleanRemote: false, excludes: '', flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: "/Users/05234/nginx-1.16.0/html", remoteDirectorySDF: false, removePrefix: 'dist', sourceFiles: 'dist/']
         ], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: true]
     ]
-//sh 'scp -r dist/ user@server:/var/www/temp_deploy/dist/'
-//sh ‘ssh user@server “rm -rf /var/www/example.com/dist/ && mv /var/www/temp_deploy/dist/ /var/www/example.com/”’
+
     }
 }
