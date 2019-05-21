@@ -31,7 +31,7 @@ stage('Lint') {
 
     stage('Build') {
         milestone()
-       bat 'npm run ng build --prod --aot  --progress=false --base-href="/demo"'
+       bat 'npm run ng build --prod --aot  --progress=false --base-href="/"'
       
     }
 
