@@ -61,6 +61,11 @@ node {
 //sh 'ssh user@server mkdir -p C:\Users\05234\Downloads\nginx-1.16.0\html\'
 bat 'cd dist'
 bat 'ls -la dist/'
+ftpPublisher alwaysPublishFromMaster: true, continueOnError: false, failOnError: false, publishers: [
+        [configName: 'FtpServer', transfers: [
+            [asciiMode: false, cleanRemote: false, excludes: '', flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: "C:\Users\05234\nginx-1.16.0\html", remoteDirectorySDF: false, removePrefix: '', sourceFiles: 'dist/']
+        ], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: true]
+    ]
 //sh 'scp -r dist/ user@server:/var/www/temp_deploy/dist/'
 //sh ‘ssh user@server “rm -rf /var/www/example.com/dist/ && mv /var/www/temp_deploy/dist/ /var/www/example.com/”’
     }
