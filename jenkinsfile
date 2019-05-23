@@ -63,7 +63,7 @@ ftpPublisher alwaysPublishFromMaster: true, continueOnError: false, failOnError:
       body: "${env.BUILD_URL} has result ${currentBuild.result}"
     
   }
-    else if(currentBuild.currentResult == "FAILURE")
+     if(currentBuild.currentResult == "FAILURE")
     {
       echo "notification for aymen.braiek with msg jenkins failure"
       mail to: 'aymen.braiek@biat.com.tn',
