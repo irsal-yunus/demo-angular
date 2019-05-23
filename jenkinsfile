@@ -59,6 +59,6 @@ ftpPublisher alwaysPublishFromMaster: true, continueOnError: false, failOnError:
         bat 'echo "Build Succeded."'
     bat 'echo "notification for aymen.braiek with msg jenkins succces"'
      // }
-   //  }
+    }
     }
 }
