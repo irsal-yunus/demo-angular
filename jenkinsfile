@@ -56,9 +56,14 @@ ftpPublisher alwaysPublishFromMaster: true, continueOnError: false, failOnError:
     //if (isUnix()) {
   //    sh 'echo "Build Succeded."'
      // }else{
-        bat 'echo "Build Succeded."'
-    bat 'echo "notification for aymen.braiek with msg jenkins succces"'
+      echo "Build Succeded."
+    echo "notification for aymen.braiek with msg jenkins succces"
+  }
+    else
+    {
+      echo "notification for aymen.braiek with msg jenkins failure"
+    }
      // }
     }
-    }
+    
 }
