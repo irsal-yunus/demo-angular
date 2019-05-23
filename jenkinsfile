@@ -51,4 +51,14 @@ ftpPublisher alwaysPublishFromMaster: true, continueOnError: false, failOnError:
     ]
 
     }
+  stage('Deploy Result'){
+  if(currentBuild.currentResult == "SUCCESS"){
+    //if (isUnix()) {
+  //    sh 'echo "Build Succeded."'
+     // }else{
+        bat 'echo "Build Succeded."'
+    bat 'echo "notification for aymen.braiek with msg jenkins succces"'
+     // }
+   //  }
+    }
 }
