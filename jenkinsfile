@@ -66,6 +66,9 @@ ftpPublisher alwaysPublishFromMaster: true, continueOnError: false, failOnError:
     else
     {
       echo "notification for aymen.braiek with msg jenkins failure"
+      mail to: 'aymen.braiek@biat.com.tn',
+      subject: "Status of pipeline: ${currentBuild.fullDisplayName}",
+      body: "${env.BUILD_URL} has result ${currentBuild.result}"
     }
      // }
     }
