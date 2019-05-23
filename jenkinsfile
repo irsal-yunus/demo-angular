@@ -21,7 +21,7 @@ node {
 
     stage('NPM Install') {
         withEnv(["NPM_CONFIG_LOGLEVEL=warn"]) {
-            bat 'npm install'
+        //    bat 'npm install'
   
         }
     }
