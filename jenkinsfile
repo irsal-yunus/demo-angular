@@ -58,6 +58,10 @@ ftpPublisher alwaysPublishFromMaster: true, continueOnError: false, failOnError:
      // }else{
       echo "Build Succeded."
     echo "notification for aymen.braiek with msg jenkins succces"
+    always {
+        emailext body: 'deploy finished with succes', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test #1'
+    }
+    
   }
     else
     {
